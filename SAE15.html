@@ -3,8 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuration Réseau d'Entreprise - Portfolio RT</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SAE - Portfolio RT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .floating-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .page-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .project-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #764ba2;
+            transform: translateX(-5px);
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta span {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .project-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .content-section p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #666;
+        }
+
+        .content-section li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .team-member {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            text-align: center;
+        }
+
+        .team-member h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .my-tasks {
+            background: rgba(74, 222, 128, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #4ade80;
+            margin-bottom: 1rem;
+        }
+
+        .my-tasks h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .task-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid #4ade80;
+        }
+
+        .task-item h5 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .result-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid;
+        }
+
+        .result-card.success {
+            background: rgba(74, 222, 128, 0.1);
+            border-left-color: #4ade80;
+        }
+
+        .result-card.info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: #3b82f6;
+        }
+
+        .result-card.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-left-color: #fbbf24;
+        }
+
+        .result-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .autocorrection {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #8b4513;
+        }
+
+        .autocorrection h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .correction-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .correction-item h5 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .points-forts {
+            background: rgba(74, 222, 128, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .points-ameliorer {
+            background: rgba(251, 191, 36, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .evidence-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .evidence-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .evidence-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .evidence-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .evidence-content {
+            padding: 1.5rem;
+        }
+
+        .evidence-content h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .evidence-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .image-upload {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload:hover {
+            border-color: #764ba2;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .team-grid,
+            .results-grid,
+            .evidence-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="floating-element"></div>
@@ -24,166 +431,243 @@
         </div>
     </nav>
 
-    <!-- Page Projet -->
+    <!-- Page SAE -->
     <div class="container page-content">
         <div class="project-header">
             <a href="projects.html" class="back-btn">← Retour aux projets</a>
-            <h1 class="project-title">Configuration Réseau d'Entreprise</h1>
+            <h1 class="project-title">SAE - [Nom de votre SAE]</h1>
             <div class="project-meta">
-                <span class="project-date">📅 Novembre 2024</span>
-                <span class="project-duration">⏱️ 3 semaines</span>
-                <span class="project-type">🏢 Projet académique</span>
+                <span class="project-date">📅 [Date]</span>
+                <span class="project-duration">⏱️ 30h</span>
+                <span class="project-type">🎓 SAE</span>
+                <span class="project-group">👥 Équipe de [X] personnes</span>
             </div>
         </div>
 
         <div class="project-content">
-            <div class="project-overview">
-                <h2>Vue d'ensemble</h2>
-                <p class="project-description">
-                    Ce projet consistait à concevoir et implémenter une infrastructure réseau complète pour une entreprise fictive de 50 employés. 
-                    L'objectif était de créer une architecture réseau sécurisée, évolutive et performante en utilisant les meilleures pratiques du secteur.
+            <!-- Tâches / Objectifs -->
+            <div class="content-section">
+                <h2>Tâches et Objectifs</h2>
+                <p>
+                    Description générale des objectifs de cette SAE et du contexte dans lequel elle s'inscrit.
                 </p>
-            </div>
-
-            <div class="project-objectives">
-                <h2>Objectifs du projet</h2>
-                <ul class="objectives-list">
-                    <li>Concevoir une topologie réseau adaptée aux besoins de l'entreprise</li>
-                    <li>Implémenter la segmentation réseau avec des VLANs</li>
-                    <li>Configurer le routage inter-VLAN</li>
-                    <li>Mettre en place des mesures de sécurité réseau</li>
-                    <li>Documenter l'architecture et les procédures</li>
+                <ul>
+                    <li>Objectif principal 1</li>
+                    <li>Objectif principal 2</li>
+                    <li>Objectif principal 3</li>
+                    <li>Compétences visées</li>
+                    <li>Livrables attendus</li>
                 </ul>
             </div>
 
-            <div class="technologies-used">
-                <h2>Technologies utilisées</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <h4>Cisco Packet Tracer</h4>
-                        <p>Simulation de l'infrastructure réseau</p>
+            <!-- Répartition -->
+            <div class="content-section">
+                <h2>Répartition des tâches</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>Votre Nom</h4>
+                        <div class="role">Rôle principal</div>
+                        <p>Responsabilités spécifiques</p>
                     </div>
-                    <div class="tech-item">
-                        <h4>Routeurs Cisco</h4>
-                        <p>Configuration du routage et des services</p>
+                    <div class="team-member">
+                        <h4>Coéquipier 1</h4>
+                        <div class="role">Rôle</div>
+                        <p>Responsabilités</p>
                     </div>
-                    <div class="tech-item">
-                        <h4>Switches managés</h4>
-                        <p>Segmentation VLAN et sécurité des ports</p>
+                    <div class="team-member">
+                        <h4>Coéquipier 2</h4>
+                        <div class="role">Rôle</div>
+                        <p>Responsabilités</p>
                     </div>
-                    <div class="tech-item">
-                        <h4>Protocoles</h4>
-                        <p>OSPF, STP, DHCP, DNS</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-phases">
-                <h2>Phases du projet</h2>
-                <div class="phases-timeline">
-                    <div class="phase-item">
-                        <div class="phase-number">1</div>
-                        <div class="phase-content">
-                            <h4>Analyse des besoins</h4>
-                            <p>Étude des exigences de l'entreprise et définition des contraintes techniques</p>
-                        </div>
-                    </div>
-                    <div class="phase-item">
-                        <div class="phase-number">2</div>
-                        <div class="phase-content">
-                            <h4>Conception de l'architecture</h4>
-                            <p>Création des schémas réseau et définition du plan d'adressage IP</p>
-                        </div>
-                    </div>
-                    <div class="phase-item">
-                        <div class="phase-number">3</div>
-                        <div class="phase-content">
-                            <h4>Implémentation</h4>
-                            <p>Configuration des équipements et mise en place de la topologie</p>
-                        </div>
-                    </div>
-                    <div class="phase-item">
-                        <div class="phase-number">4</div>
-                        <div class="phase-content">
-                            <h4>Tests et validation</h4>
-                            <p>Vérification du bon fonctionnement et tests de performance</p>
-                        </div>
+                    <div class="team-member">
+                        <h4>Coéquipier 3</h4>
+                        <div class="role">Rôle</div>
+                        <p>Responsabilités</p>
                     </div>
                 </div>
             </div>
 
-            <div class="project-results">
+            <!-- Ce que j'ai fait -->
+            <div class="content-section">
+                <h2>Mes contributions</h2>
+                <div class="my-tasks">
+                    <h4>Détail de mes réalisations</h4>
+                    <div class="task-item">
+                        <h5>Tâche 1</h5>
+                        <p>Description détaillée de ce que vous avez accompli, méthodes utilisées, difficultés rencontrées.</p>
+                    </div>
+                    <div class="task-item">
+                        <h5>Tâche 2</h5>
+                        <p>Description détaillée de votre contribution.</p>
+                    </div>
+                    <div class="task-item">
+                        <h5>Tâche 3</h5>
+                        <p>Description détaillée de votre travail.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Résultats -->
+            <div class="content-section">
                 <h2>Résultats obtenus</h2>
                 <div class="results-grid">
                     <div class="result-card success">
-                        <h4>✅ Architecture fonctionnelle</h4>
-                        <p>Infrastructure réseau opérationnelle avec segmentation complète</p>
-                    </div>
-                    <div class="result-card success">
-                        <h4>✅ Sécurité renforcée</h4>
-                        <p>Isolation des services critiques et contrôle d'accès mis en place</p>
-                    </div>
-                    <div class="result-card success">
-                        <h4>✅ Performances optimales</h4>
-                        <p>Latence réduite et bande passante optimisée</p>
+                        <h4>✅ Objectifs atteints</h4>
+                        <p>Liste des objectifs qui ont été complètement réalisés et les résultats positifs obtenus.</p>
                     </div>
                     <div class="result-card info">
-                        <h4>📊 Documentation complète</h4>
-                        <p>Guide d'administration et procédures de maintenance</p>
+                        <h4>📊 Métriques de performance</h4>
+                        <p>Données quantitatives sur les performances du projet (si applicable).</p>
+                    </div>
+                    <div class="result-card warning">
+                        <h4>⚠️ Difficultés rencontrées</h4>
+                        <p>Problèmes identifiés et solutions mises en place pour les résoudre.</p>
+                    </div>
+                    <div class="result-card info">
+                        <h4>💡 Apprentissages</h4>
+                        <p>Compétences acquises et connaissances développées pendant le projet.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="project-challenges">
-                <h2>Défis rencontrés et solutions</h2>
-                <div class="challenge-item">
-                    <h4>🎯 Défi : Configuration du routage inter-VLAN</h4>
-                    <p><strong>Solution :</strong> Utilisation d'un routeur on-a-stick avec des sous-interfaces pour optimiser les ressources matérielles.</p>
-                </div>
-                <div class="challenge-item">
-                    <h4>🎯 Défi : Gestion des adresses IP</h4>
-                    <p><strong>Solution :</strong> Implémentation d'un serveur DHCP avec des pools séparés pour chaque VLAN.</p>
+            <!-- Auto-correction -->
+            <div class="content-section">
+                <h2>Auto-évaluation</h2>
+                <div class="autocorrection">
+                    <h3>Analyse critique de ma performance</h3>
+                    
+                    <div class="correction-item">
+                        <h5>Note globale personnelle : [X]/20</h5>
+                        <div class="points-forts">
+                            <h6>🌟 Points forts :</h6>
+                            <ul>
+                                <li>Point fort 1 - explication</li>
+                                <li>Point fort 2 - explication</li>
+                                <li>Point fort 3 - explication</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <div class="points-ameliorer">
+                            <h6>🔄 Points à améliorer :</h6>
+                            <ul>
+                                <li>Aspect à améliorer 1 - plan d'action</li>
+                                <li>Aspect à améliorer 2 - plan d'action</li>
+                                <li>Aspect à améliorer 3 - plan d'action</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="correction-item">
+                        <h5>Bilan des compétences développées</h5>
+                        <p>Réflexion sur les compétences techniques et transversales acquises, et comment elles peuvent être réutilisées dans de futurs projets.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-learnings">
-                <h2>Apprentissages clés</h2>
-                <ul class="learnings-list">
-                    <li>Importance de la planification dans la conception réseau</li>
-                    <li>Maîtrise des commandes Cisco IOS pour la configuration</li>
-                    <li>Compréhension approfondie des VLANs et du routage</li>
-                    <li>Importance de la documentation technique</li>
-                    <li>Méthodologie de tests et de validation</li>
-                </ul>
-            </div>
+            <!-- Preuves / Photos -->
+            <div class="content-section">
+                <h2>Preuves et captures d'écran</h2>
+                <div class="evidence-gallery">
+                    <div class="evidence-item">
+                        <div class="evidence-placeholder">
+                            📸 Capture d'écran 1
+                        </div>
+                        <div class="evidence-content">
+                            <h4>Interface principale</h4>
+                            <p>Description de ce que montre cette capture</p>
+                        </div>
+                    </div>
+                    <div class="evidence-item">
+                        <div class="evidence-placeholder">
+                            📊 Diagramme / Schéma
+                        </div>
+                        <div class="evidence-content">
+                            <h4>Architecture du projet</h4>
+                            <p>Schéma technique réalisé</p>
+                        </div>
+                    </div>
+                    <div class="evidence-item">
+                        <div class="evidence-placeholder">
+                            💻 Code / Configuration
+                        </div>
+                        <div class="evidence-content">
+                            <h4>Extrait de code</h4>
+                            <p>Exemple de réalisation technique</p>
+                        </div>
+                    </div>
+                    <div class="evidence-item">
+                        <div class="evidence-placeholder">
+                            📋 Documentation
+                        </div>
+                        <div class="evidence-content">
+                            <h4>Documentation produite</h4>
+                            <p>Guide utilisateur ou technique</p>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Section à personnaliser -->
-            <div class="project-files">
-                <h2>Fichiers et ressources</h2>
-                <div class="files-grid">
-                    <div class="file-item">
-                        <div class="file-icon">📄</div>
-                        <h4>Rapport technique</h4>
-                        <p>Document complet de 25 pages</p>
-                        <a href="#" class="file-link">Télécharger</a>
-                    </div>
-                    <div class="file-item">
-                        <div class="file-icon">🎯</div>
-                        <h4>Fichier Packet Tracer</h4>
-                        <p>Simulation complète du réseau</p>
-                        <a href="#" class="file-link">Télécharger</a>
-                    </div>
-                    <div class="file-item">
-                        <div class="file-icon">📊</div>
-                        <h4>Schémas réseau</h4>
-                        <p>Diagrammes et topologies</p>
-                        <a href="#" class="file-link">Télécharger</a>
-                    </div>
+                <!-- Zone pour ajouter de nouvelles images -->
+                <div class="image-upload" style="margin-top: 2rem;">
+                    <input type="file" id="imageUpload" accept="image/*" multiple>
+                    <label for="imageUpload">
+                        <h4>📤 Cliquez pour ajouter vos captures d'écran</h4>
+                        <p>Formats acceptés : JPG, PNG, GIF</p>
+                    </label>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Gestion de l'upload d'images
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const gallery = document.querySelector('.evidence-gallery');
+            
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const evidenceItem = document.createElement('div');
+                        evidenceItem.className = 'evidence-item';
+                        evidenceItem.innerHTML = `
+                            <img src="${e.target.result}" alt="Preuve ajoutée" style="width: 100%; height: 200px; object-fit: cover;">
+                            <div class="evidence-content">
+                                <h4>${file.name}</h4>
+                                <p>Image ajoutée le ${new Date().toLocaleDateString()}</p>
+                            </div>
+                        `;
+                        gallery.appendChild(evidenceItem);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        // Animation d'entrée pour les éléments
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Appliquer l'animation à tous les content-section
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>

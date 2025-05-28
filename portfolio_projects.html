@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets - Portfolio RT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .floating-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .page-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #4ade80;
+            color: white;
+        }
+
+        .status-coming-soon {
+            background: #fbbf24;
+            color: white;
+        }
+
+        .status-in-progress {
+            background: #3b82f6;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">RT Portfolio</div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="about.html" class="nav-link">À propos</a></li>
+                    <li><a href="projects.html" class="nav-link active">Projets</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Projets -->
+    <div class="container page-content">
+        <div class="hero">
+            <h2 class="page-title">Mes Projets (SAE)</h2>
+            <p class="page-subtitle">Explorez les différents projets que j'ai réalisés durant ma première année en BUT réseaux et télécommunications à Ifs</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card" onclick="goToProject('SAE11.html')">
+                <div class="project-icon">🔒</div>
+                <h3>SAE 11</h3>
+                <p>Se sensibiliser à l'hygiène informatique et à la cybersécurité</p>
+                <div class="project-tech">
+                    <span class="tech-tag">MOOK</span>
+                    <span class="tech-tag">Oral</span>
+                    <span class="tech-tag">Sécurité</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE12.html')">
+                <div class="project-icon">🖧</div>
+                <h3>SAE 12</h3>
+                <p>S'initier aux réseaux informatiques</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Cisco</span>
+                    <span class="tech-tag">inter-VLAN</span>
+                    <span class="tech-tag">VM</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE13.html')">
+                <div class="project-icon">🔧</div>
+                <h3>SAE 13</h3>
+                <p>Découvrir un dispositif de transmission</p>
+                <div class="project-tech">
+                    <span class="tech-tag">RJ45</span>
+                    <span class="tech-tag">Fibre optique</span>
+                    <span class="tech-tag">câble coaxiale</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE14.html')">
+                <div class="project-icon">🔒</div>
+                <h3>SAE 14</h3>
+                <p>Se présenter sur internet</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Site Web</span>
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE15.html')">
+                <div class="project-icon">📊</div>
+                <h3>SAE 15</h3>
+                <p>Traîter des données</p>
+                <div class="project-tech">
+                    <span class="tech-tag">API</span>
+                    <span class="tech-tag">Pokemon</span>
+                    <span class="tech-tag">html</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE21.html')">
+                <div class="project-icon">📚</div>
+                <h3>SAE 21</h3>
+                <p>Construire un réseau informatique pour petite structure</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Netacad</span>
+                    <span class="tech-tag">Microsoft</span>
+                    <span class="tech-tag">AD-DS</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE22.html')">
+                <div class="project-icon">📡</div>
+                <h3>SAE 22</h3>
+                <p>Mesurer et caractériser un signal ou un système</p>
+                <div class="project-tech">
+                    <span class="tech-tag">radio FM</span>
+                    <span class="tech-tag">antennes</span>
+                    <span class="tech-tag">3G/4G/5G</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE23.html')">
+                <div class="project-icon">☁️</div>
+                <h3>SAE 23</h3>
+                <p>Mettre en place une solution informatique pour l'entreprise</p>
+                <div class="project-tech">
+                    <span class="tech-tag">html</span>
+                    <span class="tech-tag">Javascript</span>
+                    <span class="tech-tag">css</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+
+            <div class="project-card" onclick="goToProject('SAE24.html')">
+                <div class="project-icon">🌐</div>
+                <h3>SAE 24</h3>
+                <p>Projet intégratif</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Switch</span>
+                    <span class="tech-tag">WAN</span>
+                    <span class="tech-tag">services</span>
+                </div>
+                <span class="project-status status-completed">Terminé</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToProject(projectFile) {
+            // Vérifier si le fichier existe (simulation)
+            const existingProjects = [
+        'SAE11.html', 
+        'SAE12.html', 
+        'SAE13.html', 
+        'SAE14.html',
+        'SAE15.html',
+        'SAE21.html',
+        'SAE22.html',
+        'SAE23.html',
+        'SAE24.html'
+    ];;
+            
+            if (existingProjects.includes(projectFile)) {
+                window.location.href = projectFile;
+            } else {
+                // Afficher un message pour les projets pas encore créés
+                alert(`Le projet ${projectFile.replace('.html', '').toUpperCase()} n'est pas encore disponible. Page en cours de création.`);
+            }
+        }
+
+        // Animation d'apparition des cartes
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
