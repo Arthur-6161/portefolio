@@ -425,7 +425,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Accueil</a></li>
                     <li><a href="about.html" class="nav-link">À propos</a></li>
-                    <li><a href="projects.html" class="nav-link">Projets</a></li>
+                    <li><a href="portfolio_projects.html" class="nav-link">Projets</a></li>
                 </ul>
             </div>
         </div>
@@ -434,13 +434,13 @@
     <!-- Page SAE -->
     <div class="container page-content">
         <div class="project-header">
-            <a href="projects.html" class="back-btn">← Retour aux projets</a>
-            <h1 class="project-title">SAE - [Nom de votre SAE]</h1>
+            <a href="portfolio_projects.html" class="back-btn">← Retour aux projets</a>
+            <h1 class="project-title">SAE24 - Projet intégratif</h1>
             <div class="project-meta">
-                <span class="project-date">📅 [Date]</span>
-                <span class="project-duration">⏱️ [Durée]</span>
+                <span class="project-date">📅 Juin</span>
+                <span class="project-duration">⏱️ 35h</span>
                 <span class="project-type">🎓 SAE</span>
-                <span class="project-group">👥 Équipe de [X] personnes</span>
+                <span class="project-group">👥 Équipe de 4 personnes</span>
             </div>
         </div>
 
@@ -452,11 +452,30 @@
                     Description générale des objectifs de cette SAE et du contexte dans lequel elle s'inscrit.
                 </p>
                 <ul>
-                    <li>Objectif principal 1</li>
-                    <li>Objectif principal 2</li>
-                    <li>Objectif principal 3</li>
-                    <li>Compétences visées</li>
-                    <li>Livrables attendus</li>
+                    <li>Faire un réseau entier avec un LAN, WAN sur GNS3 et des VM sur proxmox.</li>
+                    <li>Réviser la télécommunication pour faire un QCM.</li>
+                    <li>Réviser les maths pour faire un examen de maths.</li>
+                    <li>Réviser du vocabulaire technique en anglais sur les autres choses de la SAE24</li>
+                    <li>AC11.01 : Maîtriser les lois fondamentales de l'éléctricité afin d'intervenir sur des équipements de R&T</li>
+                    <li>AC11.02 : Comprendre l'architecture et les fondements des systèmes numériques, les principes du codage
+                        de l'information, des communications et de l'internet.
+                    </li>
+                    <li>AC11.03 : Configurer les fonctions de base du réseau local</li>
+                    <li>AC11.04 : Maîtriser les rôles et les principes fondamentaux des systèmes d'exploitation afin d'interagir
+                        avec ceux-ci pour la configuration et l'administration des réseaux et services fournis.</li>
+                    <li>AC11.05 : Identifier les dysfonctionnements du réseau local et savoir les signaler</li>
+                    <li>AC11.06 : Installer un poste client, expliquer la procédre mise en place.</li>
+                    <li>AC12.01 : Mesurer et analyser les signaux.</li>
+                    <li>AC12.02 : Caractériser des systèmes de transmissions élémentaires et découvrir la modélisation mathématique de leur fonctionnement.</li>
+                    <li>AC12.03 : Déplyer des supports de transmission</li>
+                    <li>AC12.04 : Connecter les systèmes de ToIP</li>
+                    <li>AC12.05 : Communiquer avec un tiers (client, collaborateur...) et adapter son discours et sa langue à son interlocuteur</li>
+                    <li>AC13.01 : Utiliser un système informatique et ses outils</li>
+                    <li>AC13.02 : Lire, exécuter , corriger et modifier un programme</li>
+                    <li>AC13.03 : Traduire un algorithme, dans un langage et pour un environnement donné</li>
+                    <li>AC13.04 : Connaître l'architecture et les technologies d'un site Web</li>
+                    <li>AC13.05 : Choisir les mécanismes de gestion de données adaptés au développement de l'outil et argumenter ses choix.</li>
+                    <li>AC13.06 : S'intégrer dans un environement propice au développement et au travail collaboratif</li>
                 </ul>
             </div>
 
@@ -465,24 +484,14 @@
                 <h2>Répartition des tâches</h2>
                 <div class="team-grid">
                     <div class="team-member">
-                        <h4>Votre Nom</h4>
-                        <div class="role">Rôle principal</div>
-                        <p>Responsabilités spécifiques</p>
+                        <h4>Arthur</h4>
+                        <div class="role">Administrateur réseau et étudiant</div>
+                        <p>Mettre en place du réseau et réviser l'anglais, les maths et le télécom.</p>
                     </div>
                     <div class="team-member">
-                        <h4>Coéquipier 1</h4>
-                        <div class="role">Rôle</div>
-                        <p>Responsabilités</p>
-                    </div>
-                    <div class="team-member">
-                        <h4>Coéquipier 2</h4>
-                        <div class="role">Rôle</div>
-                        <p>Responsabilités</p>
-                    </div>
-                    <div class="team-member">
-                        <h4>Coéquipier 3</h4>
-                        <div class="role">Rôle</div>
-                        <p>Responsabilités</p>
+                        <h4>Autres coéquipiers</h4>
+                        <div class="role">Administrateurs réseau et étudiants</div>
+                        <p>Mettre en place du réseau et réviser l'anglais, les maths et le télécom.</p>
                     </div>
                 </div>
             </div>
@@ -494,15 +503,21 @@
                     <h4>Détail de mes réalisations</h4>
                     <div class="task-item">
                         <h5>Tâche 1</h5>
-                        <p>Description détaillée de ce que vous avez accompli, méthodes utilisées, difficultés rencontrées.</p>
+                        <p>J'ai mis en place un AD-DS avec des utilisateurs, leur mdp et identifiant grâce à un scripte. J'ai aussi mis en place une debian Web. J'ai aidé mes collègues pour déployer le LAN et le WAN et j'ai fais les livrable à fournir en début de projet.</p>
                     </div>
                     <div class="task-item">
                         <h5>Tâche 2</h5>
-                        <p>Description détaillée de votre contribution.</p>
+                        <p>On a lu et compris des documents que le prof nous a donné sur la division euclydienne de polynomes, la découverte d'intervalle par la méthode de kochi, le théorème de newtone, la dichotomie.
+                            On a donc dû tout bien comprendre et s'éxercer pour l'examen.
+                        </p>
                     </div>
                     <div class="task-item">
                         <h5>Tâche 3</h5>
-                        <p>Description détaillée de votre travail.</p>
+                        <p>On a fait le TP de physique qui nous a pas appris grand chose mais à donné des axes de révisions pour le QCM.</p>
+                    </div>
+                    <div class="task-item">
+                        <h5>Tâche 4</h5>
+                        <p>J'ai appris le vocabulaire d'anglais donné et je me suis entraîner à faire des résumés en anglais des autres matières de la SAE24.</p>
                     </div>
                 </div>
             </div>
@@ -513,19 +528,17 @@
                 <div class="results-grid">
                     <div class="result-card success">
                         <h4>✅ Objectifs atteints</h4>
-                        <p>Liste des objectifs qui ont été complètement réalisés et les résultats positifs obtenus.</p>
-                    </div>
-                    <div class="result-card info">
-                        <h4>📊 Métriques de performance</h4>
-                        <p>Données quantitatives sur les performances du projet (si applicable).</p>
+                        <p>J'ai réussis à implémenter tout ce que j'ai fais mais le LAN n'est pas totalement finis et pour les autres matières j'ai tous appris.</p>
                     </div>
                     <div class="result-card warning">
                         <h4>⚠️ Difficultés rencontrées</h4>
-                        <p>Problèmes identifiés et solutions mises en place pour les résoudre.</p>
+                        <p>On a eu des problèmes pour connecter le switch L3 au proxmox et avec le branchement du proxmox étais compliqué avec le GNS3. De plus même avec le TP on ne n'arrivait pas a savoir ce qu'il fallait vraiment réviser d'où la moyenne de 8 et ma note de 10</p>
                     </div>
                     <div class="result-card info">
                         <h4>💡 Apprentissages</h4>
-                        <p>Compétences acquises et connaissances développées pendant le projet.</p>
+                        <p>En réseau on a pu tout refaire et faire comme un bilan de tout ce que j'ai appris cette année avec cette partis réseau. De plus j'ai appris à expliquer ce que je fais avec des mots technique.
+                            En physique on a revue quelques choses en particulier. Et en maths on a pû apprendre des théorèmes de nous même, avec tout le TP, ce qui étais vraiment facinant.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -537,13 +550,12 @@
                     <h3>Analyse critique de ma performance</h3>
                     
                     <div class="correction-item">
-                        <h5>Note globale personnelle : [X]/20</h5>
+                        <h5>Note globale personnelle : ?/20</h5>
                         <div class="points-forts">
                             <h6>🌟 Points forts :</h6>
                             <ul>
-                                <li>Point fort 1 - explication</li>
-                                <li>Point fort 2 - explication</li>
-                                <li>Point fort 3 - explication</li>
+                                <li>Réseau</li>
+                                <li>Maths</li>
                             </ul>
                         </div>
                     </div>
@@ -552,16 +564,15 @@
                         <div class="points-ameliorer">
                             <h6>🔄 Points à améliorer :</h6>
                             <ul>
-                                <li>Aspect à améliorer 1 - plan d'action</li>
-                                <li>Aspect à améliorer 2 - plan d'action</li>
-                                <li>Aspect à améliorer 3 - plan d'action</li>
+                                <li>La télécommunication.</li>
+                                <li>Faire des phrases technique en anglais.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="correction-item">
                         <h5>Bilan des compétences développées</h5>
-                        <p>Réflexion sur les compétences techniques et transversales acquises, et comment elles peuvent être réutilisées dans de futurs projets.</p>
+                        <p>J'ai pu m remémorre toutes mes connaissances de réseau, apprendre de moi-même des théorèmes et des techniques de maths et j'ai appris du vocabulaire de maths</p>
                     </div>
                 </div>
             </div>
@@ -572,49 +583,26 @@
                 <div class="evidence-gallery">
                     <div class="evidence-item">
                         <div class="evidence-placeholder">
-                            📸 Capture d'écran 1
+                            <img src="SAE24-1.PNG" alt="Interface principale" style="width: 100%; height: auto;">
                         </div>
                         <div class="evidence-content">
-                            <h4>Interface principale</h4>
-                            <p>Description de ce que montre cette capture</p>
+                            <h4>Livrable des heures etc...</h4>
                         </div>
                     </div>
                     <div class="evidence-item">
                         <div class="evidence-placeholder">
-                            📊 Diagramme / Schéma
+                            <img src="SAE24-2.PNG" alt="Interface principale" style="width: 100%; height: auto;">
                         </div>
                         <div class="evidence-content">
-                            <h4>Architecture du projet</h4>
-                            <p>Schéma technique réalisé</p>
                         </div>
                     </div>
                     <div class="evidence-item">
                         <div class="evidence-placeholder">
-                            💻 Code / Configuration
+                            <img src="SAE24-3.PNG" alt="Interface principale" style="width: 100%; height: auto;">
                         </div>
                         <div class="evidence-content">
-                            <h4>Extrait de code</h4>
-                            <p>Exemple de réalisation technique</p>
                         </div>
                     </div>
-                    <div class="evidence-item">
-                        <div class="evidence-placeholder">
-                            📋 Documentation
-                        </div>
-                        <div class="evidence-content">
-                            <h4>Documentation produite</h4>
-                            <p>Guide utilisateur ou technique</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Zone pour ajouter de nouvelles images -->
-                <div class="image-upload" style="margin-top: 2rem;">
-                    <input type="file" id="imageUpload" accept="image/*" multiple>
-                    <label for="imageUpload">
-                        <h4>📤 Cliquez pour ajouter vos captures d'écran</h4>
-                        <p>Formats acceptés : JPG, PNG, GIF</p>
-                    </label>
                 </div>
             </div>
         </div>
