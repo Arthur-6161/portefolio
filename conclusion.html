@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusion - Portfolio RT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .floating-element {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 50%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .page-content {
+            margin-top: 100px;
+            padding: 2rem 0 4rem 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .content-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-journey {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #666;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-content h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content .period {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .reflections {
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.1), rgba(102, 126, 234, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #764ba2;
+            margin-top: 2rem;
+        }
+
+        .reflections h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .reflection-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .reflection-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .reflection-item h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .future-goals {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .future-goals h2 {
+            color: white;
+            border: none;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .goal-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .final-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .final-message h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .signature {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #667eea;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-item:nth-child(odd) {
+                flex-direction: column;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .skills-journey,
+            .achievements-grid,
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">RT Portfolio</div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="about.html" class="nav-link">À propos</a></li>
+                    <li><a href="portfolio_projects.html" class="nav-link">Projets</a></li>
+                    <li><a href="conclusion.html" class="nav-link">Conclusion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Conclusion -->
+    <div class="container page-content">
+        <div class="hero-section">
+            <h1 class="hero-title">Conclusion de mon parcours</h1>
+            <p class="hero-subtitle">Une année et demis riche en apprentissages et de défis dans le domaine des réseaux et télécommunications.</p>
+        </div>
+
+        <!-- Bilan de l'année -->
+        <div class="content-section">
+            <h2><span class="section-icon">📚</span> Bilan de l'année</h2>
+            <p>
+                Cette année et demis en BUT Réseaux & Télécommunications est une expérience qui a enrichi mes compétences techniques et professionnelles. À travers les différentes SAE et TP, j'ai pu acquérir une vision globale et concrète du domaine des réseaux informatiques et ensuite du pentesting.
+            </p>
+            <p>
+                Ce portfolio témoigne de mon évolution tout au long de cette année. Chaque projet représente une étape dans mon apprentissage, avec ses défis, ses réussites et les leçons que j'en ai tirées. J'ai appris à travailler en équipe, à gérer des projets complexes et à approfondir mes connaissances techniques.
+            </p>
+        </div>
+
+        <!-- Statistiques de l'année -->
+        <div class="content-section">
+            <h2><span class="section-icon">📊</span> Mon année en chiffres</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <span class="achievement-icon">🎯</span>
+                    <div class="achievement-number">12</div>
+                    <div class="achievement-label">Projets SAE réalisés</div>
+                </div>
+                <div class="achievement-card">
+                    <span class="achievement-icon">💻</span>
+                    <div class="achievement-number">500+</div>
+                    <div class="achievement-label">Heures de pratique</div>
+                </div>
+                <div class="achievement-card">
+                    <span class="achievement-icon">👥</span>
+                    <div class="achievement-number">10 projets</div>
+                    <div class="achievement-label">Collaborations en équipe</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compétences acquises -->
+        <div class="content-section">
+            <h2><span class="section-icon">🚀</span> Compétences développées</h2>
+            <div class="skills-journey">
+                <div class="skill-category">
+                    <h3>🌐 Réseaux & Infrastructure</h3>
+                    <ul class="skill-list">
+                        <li>Configuration et administration de réseaux</li>
+                        <li>Maîtrise des protocoles TCP/IP</li>
+                        <li>Segmentation VLAN et routage</li>
+                        <li>Maîtrise des protocoles BGP/MPLS</li>
+                        <li>Stacking</li>
+                        <li>ACL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>🔒 Cybersécurité</h3>
+                    <ul class="skill-list">
+                        <li>Politique de MDP</li>
+                        <li>Pentesting de base (brute force, énumération, élévation de privilèges etc..)</li>
+                        <li>Bonnes pratiques de sécurité</li>
+                        <li>Analyse des vulnérabilités</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>💼 Compétences professionnelles</h3>
+                    <ul class="skill-list">
+                        <li>Gestion de projet</li>
+                        <li>Travail en équipe</li>
+                        <li>Documentation technique (schéma physique et logique)</li>
+                        <li>Résolution de problèmes</li>
+                        <li>Communication professionnelle</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>⚙️ Outils & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Cisco IOS et équipements</li>
+                        <li>Linux & Windows Server</li>
+                        <li>Virtualisation (VMware)</li>
+                        <li>Progammation python</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline de progression -->
+        <div class="content-section">
+            <h2><span class="section-icon">⏳</span> Évolution au fil de l'année</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="period">1er semestre</span>
+                        <h4>Découverte et fondamentaux</h4>
+                        <p>Apprentissage des bases des réseaux, premiers pas avec les protocoles et configuration d'équipements simples. Découverte de la Télécommunication.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="period">2ème semestre</span>
+                        <h4>Approfondissement technique</h4>
+                        <p>Projets plus complexes avec VLAN, routage avancé.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="period">3ème semestre</span>
+                        <h4>Approfondissement du réseaux en ajoutant le routing de liaison et la fibre. Ajout de la Cybersécurité.</h4>
+                        <p>Projet mêlant fibre + réseau locaux + backbone + serveurs. Découverte du pentesting avec des audit et des TP.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="period">4ème semestre</span>
+                        <h4>Stage + A venir</h4>
+                        <p>Stage + ...</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Réflexions personnelles -->
+        <div class="content-section">
+            <h2><span class="section-icon">💭</span> Réflexions et apprentissages</h2>
+            <div class="reflections">
+                <h3>Ce que j'ai appris au-delà de la technique</h3>
+                <div class="reflection-item">
+                    <h5>L'importance de la collaboration</h5>
+                    <p>Travailler en équipe sur des projets complexes m'a appris la valeur de la communication, du partage de connaissances et de la complémentarité des compétences. Cela permet d'être plus efficace et de faire un travaille de plus grande envergure plus rapidement.</p>
+                </div>
+                <div class="reflection-item">
+                    <h5>La persévérance face aux difficultés</h5>
+                    <p>Chaque projet a présenté ses défis. J'ai appris à ne pas abandonner face aux problèmes, à chercher des solutions par moi même et à demander de l'aide quand nécessaire.</p>
+                </div>
+                <div class="reflection-item">
+                    <h5>La rigueur et la méthodologie</h5>
+                    <p>La documentation, les tests et la méthodologie sont essentiels pour mener à bien des projets techniques professionnels. Cela permet à d'autre techniciens ou administrateurs de débugger une infrastructure ou un programme plus rapidement et de ne pas créer d'autres problêmes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objectifs futurs -->
+        <div class="future-goals">
+            <h2>🎯 Perspectives d'avenir</h2>
+            <p style="color: white; opacity: 0.95;">Mes futures ambitions :</p>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <h4>📖 Continuer à apprendre</h4>
+                    <p>Approfondir mes connaissances en cybersécurité et en administration système et réseaux.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>🏢 Stage ou alternance professionnel</h4>
+                    <p>Trouver un stage, ou une alternance pour la 3ème année, stimulant pour mettre en pratique mes compétences acquises en cour en entreprise.</p>
+                </div>
+                <div class="goal-card">
+                    <h4>🎓 Certifications</h4>
+                    <p>Obtenir des certifications reconnues (Cisco CCNA, Stormshield, rootme etc...)</p>
+                </div>
+                <div class="goal-card">
+                    <h4>📚 Suite</h4>
+                    <p>Finir ma 3ème année de BUT en alternance et faire si possible un master ou une école d'ingénieur en poursuite d'étude.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message final -->
+        <div class="final-message">
+            <h2>Merci</h2>
+            <p>
+                Ce n'est que le début d'un long parcours dans ce domaine passionnant. Je suis impatient de relever les prochains défis et de continuer à apprendre et à grandir professionnellement.
+            </p>
+            <div class="signature">DUBOUST Arthur</div>
+            <a href="index.html" class="cta-button">Retour à l'accueil</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation d'apparition des sections au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section, .future-goals, .final-message').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Animation pour les cartes d'achievements
+        document.querySelectorAll('.achievement-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.8)';
+            card.style.transition = 'all 0.5s ease';
+            card.style.transitionDelay = `${index * 0.1}s`;
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        // Animation pour les skill categories
+        document.querySelectorAll('.skill-category').forEach((category, index) => {
+            category.style.opacity = '0';
+            category.style.transform = 'translateX(-30px)';
+            category.style.transition = 'all 0.6s ease';
+            category.style.transitionDelay = `${index * 0.15}s`;
+            
+            const skillObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+            
+            skillObserver.observe(category);
+        });
+    </script>
+</body>
+</html>
